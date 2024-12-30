@@ -43,7 +43,6 @@ library(spanish2)
 
 to_words(31262668)
 #> [1] "treinta y un millones doscientos sesenta y dos mil seiscientos sesenta y ocho"
-## [1] "treinta y un millones doscientos sesenta y dos mil seiscientos sesenta y ocho"
 ```
 
 It an handle very big **integers**:
@@ -52,7 +51,6 @@ It an handle very big **integers**:
 big_number = round(pi * 1e21, 0)
 to_words(big_number)
 #> [1] "tres mil ciento cuarenta y un trillón quinientos noventa y dos mil seiscientos cincuenta y tres billones quinientos ochenta y nueve mil setecientos noventa y tres millones doscientos diez mil trescientos sesenta y ocho"
-## [1] "tres mil ciento cuarenta y un trillón quinientos noventa y dos mil seiscientos cincuenta y tres billones quinientos ochenta y nueve mil setecientos noventa y tres millones doscientos diez mil trescientos sesenta y ocho"
 ```
 
 But numbers above 1e22 trigger a warning because of wrong arithmetic of
@@ -64,11 +62,6 @@ to_words(bigger_number)
 #> Warning in to_words(bigger_number): Number is big, precision errors may be present in the output.
 #> See https://stackoverflow.com/questions/23600569/r-wrong-arithmetic-for-big-numbers
 #> [1] "treinta y un mil cuatrocientos quince trillones novecientos veinte y seis mil quinientos treinta y cinco billones ochocientos noventa y siete mil novecientos treinta millones seis mil quinientos veinte y ocho"
-## [1] "treinta y un mil cuatrocientos quince trillones novecientos veinte y seis mil quinientos treinta y cinco billones ochocientos noventa y siete mil novecientos treinta millones seis mil quinientos veinte y ocho"
-## Warning message:
-## In to_words(bigger_number) :
-##   Number is big, precision errors may be present in the output.
-## See https://stackoverflow.com/questions/23600569/r-wrong-arithmetic-for-big-numbers
 ```
 
 Very large (up to 60 digits) can be provided to the function, as long as
@@ -81,11 +74,9 @@ biggest_number = sample(0:9, 60, TRUE) |>
 
 biggest_number
 #> [1] "836016120449596844884419803259953398658786759629571155022756"
-## [1] "836016120449596844884419803259953398658786759629571155022756"
 
 to_words(biggest_number)
 #> [1] "ochocientos treinta y seis mil diez y seis nonillones ciento veinte mil cuatrocientos cuarenta y nueve octillones quinientos noventa y seis mil ochocientos cuarenta y cuatro septillones ochocientos ochenta y cuatro mil cuatrocientos diez y nueve sextillones ochocientos y tres mil doscientos cincuenta y nueve quintillones novecientos cincuenta y tres mil trescientos noventa y ocho cuatrillones seiscientos cincuenta y ocho mil setecientos ochenta y seis trillones setecientos cincuenta y nueve mil seiscientos veinte y nueve billones quinientos setenta y un mil ciento cincuenta y cinco millones veinte y dos mil setecientos cincuenta y seis"
-## [1] "ochocientos treinta y seis mil diez y seis nonillones ciento veinte mil cuatrocientos cuarenta y nueve octillones quinientos noventa y seis mil ochocientos cuarenta y cuatro septillones ochocientos ochenta y cuatro mil cuatrocientos diez y nueve sextillones ochocientos y tres mil doscientos cincuenta y nueve quintillones novecientos cincuenta y tres mil trescientos noventa y ocho cuatrillones seiscientos cincuenta y ocho mil setecientos ochenta y seis trillones setecientos cincuenta y nueve mil seiscientos veinte y nueve billones quinientos setenta y un mil ciento cincuenta y cinco millones veinte y dos mil setecientos cincuenta y seis"
 ```
 
 `spahish2::to_words()` can take a negative number, either as an integer
@@ -94,11 +85,9 @@ or as a string:
 ``` r
 to_words(-1234)
 #> [1] "menos mil doscientos treinta y cuatro"
-## [1] "menos mil doscientos treinta y cuatro"
 
 identical(to_words(-1234), to_words("-1234"))
 #> [1] TRUE
-## [1] TRUE
 ```
 
 ## Simplicity of the Code vs. Style in the Absence of a Standard
@@ -120,7 +109,7 @@ What I mean by this “simplicity vs. Style” decision? See for yourself:
 | :----: | :-------------: | :-----------------------: | ----------------- |
 |   77   | Setenta y siete |                           | setenta y siete   |
 |   16   |    Dieciséis    |        Diez y seis        | diez y seis       |
-|   27   |   Veintisiete   |       Venta y siete       | veinte y siete    |
+|   27   |   Veintisiete   |      Veinte y siete       | veinte y siete    |
 |  1100  |    Mil cien     | Mil ciento / mil y ciento | mil cien          |
 
 In the same vein, if you read the code you will see that there is a long

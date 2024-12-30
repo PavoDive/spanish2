@@ -40,7 +40,6 @@ The main (and only function) of `spanish2` is `to_words()`, used to convert from
 library(spanish2)
 
 to_words(31262668)
-## [1] "treinta y un millones doscientos sesenta y dos mil seiscientos sesenta y ocho"
 ```
 
 It an handle very big **integers**:
@@ -48,7 +47,6 @@ It an handle very big **integers**:
 ```{r example2}
 big_number = round(pi * 1e21, 0)
 to_words(big_number)
-## [1] "tres mil ciento cuarenta y un trillón quinientos noventa y dos mil seiscientos cincuenta y tres billones quinientos ochenta y nueve mil setecientos noventa y tres millones doscientos diez mil trescientos sesenta y ocho"
 ```
 
 But numbers above 1e22 trigger a warning because of wrong arithmetic of big numbers in R: converted text may contain errors:
@@ -56,11 +54,6 @@ But numbers above 1e22 trigger a warning because of wrong arithmetic of big numb
 ```{r example3}
 bigger_number = round(pi * 1e22, 0)
 to_words(bigger_number)
-## [1] "treinta y un mil cuatrocientos quince trillones novecientos veinte y seis mil quinientos treinta y cinco billones ochocientos noventa y siete mil novecientos treinta millones seis mil quinientos veinte y ocho"
-## Warning message:
-## In to_words(bigger_number) :
-##   Number is big, precision errors may be present in the output.
-## See https://stackoverflow.com/questions/23600569/r-wrong-arithmetic-for-big-numbers
 ```
 
 Very large (up to 60 digits) can be provided to the function, as long as they are provided as a string:
@@ -71,20 +64,16 @@ biggest_number = sample(0:9, 60, TRUE) |>
   paste(collapse = "")
 
 biggest_number
-## [1] "836016120449596844884419803259953398658786759629571155022756"
 
 to_words(biggest_number)
-## [1] "ochocientos treinta y seis mil diez y seis nonillones ciento veinte mil cuatrocientos cuarenta y nueve octillones quinientos noventa y seis mil ochocientos cuarenta y cuatro septillones ochocientos ochenta y cuatro mil cuatrocientos diez y nueve sextillones ochocientos y tres mil doscientos cincuenta y nueve quintillones novecientos cincuenta y tres mil trescientos noventa y ocho cuatrillones seiscientos cincuenta y ocho mil setecientos ochenta y seis trillones setecientos cincuenta y nueve mil seiscientos veinte y nueve billones quinientos setenta y un mil ciento cincuenta y cinco millones veinte y dos mil setecientos cincuenta y seis"
 ```
 
 `spahish2::to_words()` can take a negative number, either as an integer or as a string:
 
 ```{r example5}
 to_words(-1234)
-## [1] "menos mil doscientos treinta y cuatro"
 
 identical(to_words(-1234), to_words("-1234"))
-## [1] TRUE
 ```
 
 ## Simplicity of the Code vs. Style in the Absence of a Standard
@@ -99,7 +88,7 @@ What I mean by this "simplicity vs. Style" decision? See for yourself:
 |:------:|:---------------:|:-------------------------:|-------------------|
 | 77     | Setenta y siete |                           | setenta y siete   |
 | 16     | Dieciséis       | Diez y seis               | diez y seis       |
-| 27     | Veintisiete     | Venta y siete             | veinte y siete    |
+| 27     | Veintisiete     | Veinte y siete             | veinte y siete    |
 | 1100   | Mil cien        | Mil ciento / mil y ciento | mil cien                  |
 
 In the same vein, if you read the code you will see that there is a long function that "cleans the text" (makes some corrections like converting the string "cincodiez" to "cincuenta"). **I am well aware that there is some black magic regex that can reduce the function from its actual 83 lines to some 10 or 15**. But I preferred the readability over the size, so please bear with me (specially if you plan your contribution around this very issue).
